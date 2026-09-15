@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Self-hosted Inter is preferred over a Google Fonts CDN so typography works
+ * fully offline on first load. Drop variable-font files into public/fonts/
+ * and uncomment when the real assets are added:
+ *
+ * @font-face {
+ *   font-family: 'Inter';
+ *   src: url('/fonts/InterVariable.woff2') format('woff2');
+ *   font-weight: 100 900;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ */
+
+:root {
+  --radius: 0.625rem;
+
+  /* Warm neutral light surfaces */
+  --background: #faf9f7;
+  --foreground: #1c1b1a;
+  --card: #ffffff;
+  --card-foreground: #1c1b1a;
+  --popover: #ffffff;
+  --popover-foreground: #1c1b1a;
+
+  /* Premium indigo accent */
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f1efec;
+  --secondary-foreground: #1c1b1a;
+  --muted: #f1efec;
+  --muted-foreground: #6b6862;
+  --accent: #eef0ff;
+  --accent-foreground: #4338ca;
+
+  --destructive: #c0362c;
+  --destructive-foreground: #ffffff;
+
+  --border: #e7e4df;
+  --input: #e7e4df;
+  --ring: #4f46e5;
+
+  /* Priority colors: muted red / orange / amber / gray */
+  --priority-urgent: #c0362c;
+  --priority-high: #c2703a;
+  --priority-medium: #a9820a;
+  --priority-low: #6b6862;
+}
+
+.dark {
+  /* Soft charcoal + slate surfaces */
+  --background: #17181a;
+  --foreground: #ecebe8;
+  --card: #1e2023;
+  --card-foreground: #ecebe8;
+  --popover: #1e2023;
+  --popover-foreground: #ecebe8;
+
+  --primary: #818cf8;
+  --primary-foreground: #1e1b4b;
+
+  --secondary: #24262a;
+  --secondary-foreground: #ecebe8;
+  --muted: #24262a;
+  --muted-foreground: #9a9892;
+  --accent: #2a2a45;
+  --accent-foreground: #c7d2fe;
+
+  --destructive: #e5675c;
+  --destructive-foreground: #1e1b1a;
+
+  --border: #2c2e32;
+  --input: #2c2e32;
+  --ring: #818cf8;
+
+  --priority-urgent: #e5675c;
+  --priority-high: #e2915e;
+  --priority-medium: #d4b44a;
+  --priority-low: #9a9892;
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-priority-urgent: var(--priority-urgent);
+  --color-priority-high: var(--priority-high);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-low: var(--priority-low);
+
+  /* Mixed radius system: inputs small, cards medium, important surfaces large */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  /* Explicit type scale from the design spec */
+  --text-page-title: 2rem;
+  --text-page-title--line-height: 2.375rem;
+  --text-page-title--font-weight: 600;
+  --text-section: 1.25rem;
+  --text-section--line-height: 1.75rem;
+  --text-section--font-weight: 600;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+  --text-secondary: 0.8125rem;
+  --text-secondary--line-height: 1.25rem;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground text-body;
+    font-family: var(--font-sans);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
