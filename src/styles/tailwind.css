@@ -4,18 +4,36 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Self-hosted Inter is preferred over a Google Fonts CDN so typography works
- * fully offline on first load. Drop variable-font files into public/fonts/
- * and uncomment when the real assets are added:
- *
- * @font-face {
- *   font-family: 'Inter';
- *   src: url('/fonts/InterVariable.woff2') format('woff2');
- *   font-weight: 100 900;
- *   font-style: normal;
- *   font-display: swap;
- * }
+ * Self-hosted Inter (SIL OFL 1.1 — see public/fonts/LICENSE-Inter.txt),
+ * not a Google Fonts CDN, so typography works fully offline on first
+ * load per the PWA's offline-first requirement. Two subsets only —
+ * latin (covers English) + latin-ext (covers most other Western/Central
+ * European accented characters) — deliberately excludes the
+ * cyrillic/greek/vietnamese subsets Fontsource also ships, since this
+ * app has no UI in those scripts yet; adding them later is just adding
+ * more @font-face blocks with the matching unicode-range, no
+ * restructuring. Both files together are ~130KB, cached by the service
+ * worker's precache list (see vite.config.ts's workbox.globPatterns,
+ * which already includes woff2).
  */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 :root {
   --radius: 0.625rem;
@@ -43,13 +61,26 @@
   --destructive-foreground: #ffffff;
 
   --border: #e7e4df;
-  --input: #e7e4df;
+  /* Deliberately darker than --border (was identical to it) — this is
+     specifically the form-control boundary color (`border-input`, used
+     by Input/Textarea/Select/Button's outline variant), which WCAG
+     1.4.11 requires to hit 3:1 against its background since it's
+     functional (identifies a UI component), not decorative like a card
+     outline or a list divider. Verified: 3.05:1 against --background,
+     3.21:1 against --card. --border itself stays untouched — divider/
+     card-outline contrast isn't a WCAG 1.4.11 target. */
+  --input: #9b8e79;
   --ring: #4f46e5;
 
-  /* Priority colors: muted red / orange / amber / gray */
-  --priority-urgent: #c0362c;
-  --priority-high: #c2703a;
-  --priority-medium: #a9820a;
+  /* Priority colors: muted red / orange / amber / gray. Text sits directly
+     on a 15%-opacity tint of itself (PriorityBadge.vue) — urgent/high/
+     medium are darkened from their original values specifically so that
+     combination clears 4.5:1 (verified against the actual composited
+     badge background, not just against a plain white card); low already
+     passed and is unchanged. */
+  --priority-urgent: #bc352b;
+  --priority-high: #99582e;
+  --priority-medium: #826408;
   --priority-low: #6b6862;
 }
 
@@ -76,13 +107,22 @@
   --destructive-foreground: #1e1b1a;
 
   --border: #2c2e32;
-  --input: #2c2e32;
+  /* See :root's --input comment — same reasoning, lightened instead of
+     darkened since this is the dark theme. Verified: 3.36:1 against
+     --background, 3.08:1 against --card. */
+  --input: #666c75;
   --ring: #818cf8;
 
-  --priority-urgent: #e5675c;
+  /* urgent/low nudged just enough to clear 4.5:1 (with a small margin
+     above the exact boundary, since 8-bit hex rounding means "solved to
+     the threshold" can render a few thousandths under in practice)
+     against their actual composited badge background (see :root's
+     comment) — high/medium already passed comfortably in dark mode and
+     are unchanged. */
+  --priority-urgent: #e8776e;
   --priority-high: #e2915e;
   --priority-medium: #d4b44a;
-  --priority-low: #9a9892;
+  --priority-low: #9c9a94;
 }
 
 @theme inline {

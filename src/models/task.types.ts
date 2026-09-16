@@ -17,6 +17,13 @@ export interface Task {
   /** Set when this task was generated from a RecurringRule. */
   recurringRuleId?: string
   notes?: string
+  /**
+   * True only for a row created by taskService.createDraftTask() (the task
+   * drawer's "new task" flow). Never cleared once set, even after a title
+   * is typed — combined with an empty title, it's how an abandoned draft
+   * is told apart from a real task, at the moment the drawer closes.
+   */
+  createdViaDraft: boolean
   status: TaskStatus
   createdAt: string
   updatedAt: string

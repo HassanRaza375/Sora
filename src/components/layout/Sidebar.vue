@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { ChevronsLeft, ChevronsRight } from '@lucide/vue'
+import { ChevronsLeft, ChevronsRight, Plus, Search } from '@lucide/vue'
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { useCommandPalette } from '@/composables/useCommandPalette'
+import { useTaskDrawer } from '@/composables/useTaskDrawer'
+import { useTasks } from '@/composables/useTasks'
 import { cn } from '@/lib/utils'
 import { routes } from '@/router/routes'
 
@@ -10,6 +15,9 @@ import { navIcons } from './navIcons'
 
 const route = useRoute()
 const collapsed = ref(false)
+const { openTaskDrawer } = useTaskDrawer()
+const { open: openCommandPalette } = useCommandPalette()
+const { inboxCount } = useTasks()
 
 const items = computed(() => routes.filter((r) => r.meta?.showInSidebar))
 </script>
@@ -21,6 +29,25 @@ const items = computed(() => routes.filter((r) => r.meta?.showInSidebar))
   >
     <div class="flex h-14 shrink-0 items-center px-4">
       <span v-if="!collapsed" class="text-section font-semibold">Sora</span>
+    </div>
+
+    <div class="flex flex-col gap-2 px-2 pb-2">
+      <Button :class="cn('w-full gap-2', collapsed && 'px-0')" @click="openTaskDrawer()">
+        <Plus class="h-4 w-4 shrink-0" />
+        <span v-if="!collapsed">New Task</span>
+      </Button>
+      <Button
+        variant="outline"
+        :class="cn('w-full gap-2', collapsed && 'px-0')"
+        :title="collapsed ? 'Search (Ctrl/Cmd+K)' : undefined"
+        @click="openCommandPalette()"
+      >
+        <Search class="h-4 w-4 shrink-0" />
+        <span v-if="!collapsed" class="flex-1 text-left">Search</span>
+        <kbd v-if="!collapsed" class="border-border bg-secondary text-muted-foreground rounded border px-1.5 py-0.5 font-mono text-[10px]">
+          ⌘K
+        </kbd>
+      </Button>
     </div>
 
     <nav class="flex flex-1 flex-col gap-1 overflow-y-auto px-2">
@@ -37,8 +64,17 @@ const items = computed(() => routes.filter((r) => r.meta?.showInSidebar))
           )
         "
       >
-        <component :is="navIcons[item.meta!.icon]" class="h-4 w-4 shrink-0" />
-        <span v-if="!collapsed">{{ item.meta!.title }}</span>
+        <span class="relative shrink-0">
+          <component :is="navIcons[item.meta!.icon]" class="h-4 w-4" />
+          <span
+            v-if="item.name === 'inbox' && inboxCount > 0 && collapsed"
+            class="bg-primary absolute -top-1 -right-1 h-1.5 w-1.5 rounded-full"
+          />
+        </span>
+        <span v-if="!collapsed" class="flex-1 truncate">{{ item.meta!.title }}</span>
+        <Badge v-if="item.name === 'inbox' && inboxCount > 0 && !collapsed" variant="secondary">
+          {{ inboxCount }}
+        </Badge>
       </RouterLink>
     </nav>
 
