@@ -14,7 +14,7 @@ const OPTIONS: { value: ThemePreference; label: string }[] = [
 <template>
   <section class="flex flex-col gap-3">
     <div>
-      <h2 class="text-secondary text-muted-foreground font-medium">Appearance</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Appearance</h2>
       <p class="text-caption text-muted-foreground">
         "System" follows your OS's light/dark setting automatically and updates live if you change it.
       </p>

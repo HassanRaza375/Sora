@@ -51,7 +51,7 @@ const upcomingTasks = computed(() =>
     <header class="flex flex-wrap items-center justify-between gap-4">
       <div>
         <h1 class="text-page-title">{{ greeting }}</h1>
-        <p class="text-secondary text-muted-foreground">{{ dateLabel }}</p>
+        <p class="text-meta text-muted-foreground">{{ dateLabel }}</p>
       </div>
       <Button title="Build a recommended plan from today's tasks and your availability" class="gap-2" @click="handlePlanMyDay">
         <Sparkles class="h-4 w-4" />
@@ -61,7 +61,7 @@ const upcomingTasks = computed(() =>
 
     <div class="border-border bg-card flex items-center justify-between rounded-lg border p-4">
       <div>
-        <p class="text-secondary text-muted-foreground">Today's workload</p>
+        <p class="text-meta text-muted-foreground">Today's workload</p>
         <p class="text-section">{{ workload.count }} task{{ workload.count === 1 ? '' : 's' }}</p>
       </div>
       <p class="text-section text-muted-foreground">{{ formatDuration(workload.totalMinutes) }}</p>
@@ -80,7 +80,7 @@ const upcomingTasks = computed(() =>
     </section>
 
     <section class="flex flex-col gap-3">
-      <h2 class="text-secondary text-muted-foreground font-medium">Today's tasks</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Today's tasks</h2>
 
       <div v-if="todayTasks.length === 0" class="text-muted-foreground flex flex-col items-center gap-3 py-16 text-center">
         <CheckCircle2 class="h-8 w-8" />
@@ -93,7 +93,7 @@ const upcomingTasks = computed(() =>
     </section>
 
     <section v-if="upcomingTasks.length > 0" class="flex flex-col gap-3">
-      <h2 class="text-secondary text-muted-foreground flex items-center gap-2 font-medium">
+      <h2 class="text-meta text-muted-foreground flex items-center gap-2 font-medium">
         <CalendarClock class="h-4 w-4" />
         Upcoming deadlines
       </h2>

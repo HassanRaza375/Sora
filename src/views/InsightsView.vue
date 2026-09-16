@@ -39,7 +39,7 @@ const { progressFor } = useProjectProgress()
     <header class="flex flex-wrap items-center justify-between gap-4">
       <div>
         <h1 class="text-page-title">Insights</h1>
-        <p class="text-secondary text-muted-foreground">Light analytics on how you're doing.</p>
+        <p class="text-meta text-muted-foreground">Light analytics on how you're doing.</p>
       </div>
 
       <Tabs :model-value="range" @update:model-value="onRangeChange">
@@ -53,18 +53,18 @@ const { progressFor } = useProjectProgress()
 
     <section class="grid grid-cols-2 gap-4">
       <div class="border-border bg-card rounded-lg border p-4">
-        <p class="text-secondary text-muted-foreground">Tasks completed</p>
+        <p class="text-meta text-muted-foreground">Tasks completed</p>
         <p class="text-section">{{ tasksCompleted }}</p>
       </div>
       <div class="border-border bg-card rounded-lg border p-4">
-        <p class="text-secondary text-muted-foreground">Completion rate</p>
+        <p class="text-meta text-muted-foreground">Completion rate</p>
         <p class="text-section">{{ completionRate }}%</p>
       </div>
     </section>
 
     <section class="border-border bg-card flex items-center justify-between rounded-lg border p-4">
       <div>
-        <p class="text-secondary text-muted-foreground">Workload (due in range)</p>
+        <p class="text-meta text-muted-foreground">Workload (due in range)</p>
         <p class="text-section">{{ workload.count }} task{{ workload.count === 1 ? '' : 's' }}</p>
       </div>
       <p class="text-section text-muted-foreground">{{ formatDuration(workload.totalMinutes) }}</p>
@@ -72,7 +72,7 @@ const { progressFor } = useProjectProgress()
 
     <section class="flex flex-col gap-3">
       <div>
-        <h2 class="text-secondary text-muted-foreground font-medium">Project progress</h2>
+        <h2 class="text-meta text-muted-foreground font-medium">Project progress</h2>
         <p class="text-caption text-muted-foreground">Always current — not affected by the range above.</p>
       </div>
 
@@ -97,7 +97,7 @@ const { progressFor } = useProjectProgress()
 
     <section class="border-border bg-card flex items-center justify-between rounded-lg border p-4">
       <div>
-        <p class="text-secondary text-muted-foreground">Recurring task completion</p>
+        <p class="text-meta text-muted-foreground">Recurring task completion</p>
         <p class="text-section">
           <template v-if="recurringCompletion.total === 0">No recurring instances in range</template>
           <template v-else>{{ recurringCompletion.completed }} of {{ recurringCompletion.total }}</template>
@@ -110,7 +110,7 @@ const { progressFor } = useProjectProgress()
 
     <section class="border-border bg-card flex flex-col gap-2 rounded-lg border p-4">
       <div class="flex items-center justify-between">
-        <p class="text-secondary text-muted-foreground">Planning accuracy</p>
+        <p class="text-meta text-muted-foreground">Planning accuracy</p>
         <p v-if="planningAccuracy.percent !== undefined" class="text-section">{{ planningAccuracy.percent }}%</p>
       </div>
       <p class="text-caption text-muted-foreground">

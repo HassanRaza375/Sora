@@ -429,7 +429,7 @@ function handleOpenChange(open: boolean) {
       </section>
 
       <section class="border-border flex flex-col gap-4 border-t pt-4">
-        <h3 class="text-secondary text-muted-foreground font-medium">Schedule</h3>
+        <h3 class="text-meta text-muted-foreground font-medium">Schedule</h3>
 
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col gap-1.5">
@@ -589,7 +589,7 @@ function handleOpenChange(open: boolean) {
       </section>
 
       <section class="border-border flex flex-col gap-4 border-t pt-4">
-        <h3 class="text-secondary text-muted-foreground font-medium">Details</h3>
+        <h3 class="text-meta text-muted-foreground font-medium">Details</h3>
 
         <div class="flex flex-col gap-1.5">
           <Label for="task-notes">Notes</Label>

@@ -36,7 +36,7 @@ function onToggleDone(taskId: string, value: boolean | 'indeterminate') {
   <section v-if="plan" class="border-border bg-card flex flex-col gap-5 rounded-lg border p-4">
     <div class="flex items-center justify-between gap-4">
       <div>
-        <h2 class="text-secondary text-muted-foreground font-medium">Today's plan</h2>
+        <h2 class="text-meta text-muted-foreground font-medium">Today's plan</h2>
         <p class="text-caption text-muted-foreground">
           {{ formatDuration(plan.plannedMinutes) }} planned of {{ formatDuration(capacityMinutes) }} available
         </p>

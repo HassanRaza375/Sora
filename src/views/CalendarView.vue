@@ -147,7 +147,7 @@ const gridDays = computed<GridDay[]>(() => {
     <header class="flex flex-wrap items-center justify-between gap-4">
       <div>
         <h1 class="text-page-title">Calendar</h1>
-        <p class="text-secondary text-muted-foreground">Deadlines at a glance.</p>
+        <p class="text-meta text-muted-foreground">Deadlines at a glance.</p>
       </div>
 
       <Tabs :model-value="view" @update:model-value="onViewChange">
@@ -234,7 +234,7 @@ const gridDays = computed<GridDay[]>(() => {
       </div>
       <div v-else class="flex flex-col gap-6">
         <section v-for="group in agendaGroups" :key="group.dateIso" class="flex flex-col gap-2">
-          <h3 class="text-secondary text-muted-foreground font-medium">
+          <h3 class="text-meta text-muted-foreground font-medium">
             {{ format(parseISO(group.dateIso), 'EEEE, MMMM d') }}
           </h3>
           <ul class="border-border divide-border bg-card divide-y overflow-hidden rounded-lg border">

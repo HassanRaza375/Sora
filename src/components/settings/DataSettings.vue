@@ -91,7 +91,7 @@ async function handleClearData() {
 <template>
   <section class="flex flex-col gap-8">
     <div class="flex flex-col gap-2">
-      <h2 class="text-secondary text-muted-foreground font-medium">Export &amp; backup</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Export &amp; backup</h2>
       <p class="text-caption text-muted-foreground">
         Downloads everything — tasks, projects, plans, recurring rules, reminders, and completion history — as one
         JSON file. There's no server in this app to back up to automatically, so this file <em>is</em> your backup;
@@ -103,7 +103,7 @@ async function handleClearData() {
     </div>
 
     <div class="border-border flex flex-col gap-2 border-t pt-6">
-      <h2 class="text-secondary text-muted-foreground font-medium">Import</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Import</h2>
       <p class="text-caption text-muted-foreground">
         Restores from a previously exported file. This <strong>replaces</strong> everything currently in the app —
         it's meant for restoring a backup or moving to a new device, not merging two separate sets of data.

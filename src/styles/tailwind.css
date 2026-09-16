@@ -168,8 +168,20 @@
   --text-section--font-weight: 600;
   --text-body: 0.875rem;
   --text-body--line-height: 1.375rem;
-  --text-secondary: 0.8125rem;
-  --text-secondary--line-height: 1.25rem;
+  /* Named "meta" rather than the spec's own "Secondary: 13px" label — a
+     `--text-secondary` key here would generate a `text-secondary`
+     Tailwind utility that collides with the `text-secondary` COLOR
+     utility Tailwind auto-generates from `--color-secondary` above
+     (shadcn's secondary bg/fg pair). Same class name, two different
+     `@theme` namespaces (`--text-*` for font-size, `--color-*` for
+     color) both produce a `.text-secondary` rule; the color one won the
+     cascade, so every "secondary" text label rendered in `--secondary`
+     (a muted background tone, ~invisible on `--background`) instead of
+     `--muted-foreground`. Found via an actual screenshot, not a
+     contrast-formula check — the computed hex value on this token was
+     never wrong, so a token-value audit alone couldn't have caught it. */
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.25rem;
   --text-caption: 0.75rem;
   --text-caption--line-height: 1rem;
 }

@@ -80,7 +80,7 @@ async function handleAddPeriod() {
   <div class="flex flex-col gap-8">
     <section class="flex flex-col gap-3">
       <div>
-        <h2 class="text-secondary text-muted-foreground font-medium">Weekly availability</h2>
+        <h2 class="text-meta text-muted-foreground font-medium">Weekly availability</h2>
         <p class="text-caption text-muted-foreground">
           Working hours and breaks — used to figure out how much you can fit into a day.
         </p>
@@ -156,7 +156,7 @@ async function handleAddPeriod() {
     </section>
 
     <section class="flex flex-col gap-3">
-      <h2 class="text-secondary text-muted-foreground font-medium">Unavailable periods</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Unavailable periods</h2>
       <p class="text-caption text-muted-foreground">
         Whole days blocked out entirely — vacations, holidays, anything that leaves zero capacity.
       </p>

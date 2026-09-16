@@ -33,7 +33,7 @@ const permissionLabel = computed(() => {
 <template>
   <section class="flex flex-col gap-6">
     <div>
-      <h2 class="text-secondary text-muted-foreground font-medium">Notifications</h2>
+      <h2 class="text-meta text-muted-foreground font-medium">Notifications</h2>
       <p class="text-caption text-muted-foreground">
         Reminders (due time, N minutes/hours before, custom) are set per task from its drawer — this page controls
         whether they're allowed to show up visibly.

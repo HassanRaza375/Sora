@@ -21,7 +21,7 @@ const dialogOpen = ref(false)
     <header class="flex flex-wrap items-center justify-between gap-4">
       <div>
         <h1 class="text-page-title">Projects</h1>
-        <p class="text-secondary text-muted-foreground">Lightweight containers for related tasks.</p>
+        <p class="text-meta text-muted-foreground">Lightweight containers for related tasks.</p>
       </div>
       <Button class="gap-2" @click="dialogOpen = true">
         <Plus class="h-4 w-4" />
@@ -50,7 +50,7 @@ const dialogOpen = ref(false)
             <span class="text-body flex-1 truncate font-medium">{{ project.name }}</span>
           </div>
 
-          <p v-if="project.description" class="text-secondary text-muted-foreground line-clamp-2">
+          <p v-if="project.description" class="text-meta text-muted-foreground line-clamp-2">
             {{ project.description }}
           </p>
 

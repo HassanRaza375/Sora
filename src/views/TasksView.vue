@@ -119,7 +119,7 @@ function projectFor(task: Task) {
     <header class="flex flex-wrap items-center justify-between gap-4">
       <div>
         <h1 class="text-page-title">Tasks</h1>
-        <p class="text-secondary text-muted-foreground">All your tasks, filtered and organized.</p>
+        <p class="text-meta text-muted-foreground">All your tasks, filtered and organized.</p>
       </div>
 
       <Tabs :model-value="view" @update:model-value="onViewChange">
@@ -200,7 +200,7 @@ function projectFor(task: Task) {
         @dragover.prevent
         @drop.prevent="onDrop($event, column.status)"
       >
-        <h2 class="text-secondary text-muted-foreground flex items-center justify-between font-medium">
+        <h2 class="text-meta text-muted-foreground flex items-center justify-between font-medium">
           {{ column.title }}
           <span class="text-caption">{{ column.tasks.length }}</span>
         </h2>

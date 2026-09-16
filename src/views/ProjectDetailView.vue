@@ -50,7 +50,7 @@ async function handleDelete() {
         </span>
         <div>
           <h1 class="text-page-title">{{ project.name }}</h1>
-          <p v-if="project.description" class="text-secondary text-muted-foreground">{{ project.description }}</p>
+          <p v-if="project.description" class="text-meta text-muted-foreground">{{ project.description }}</p>
         </div>
       </div>
 

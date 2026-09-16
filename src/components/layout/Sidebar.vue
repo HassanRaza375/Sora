@@ -3,6 +3,8 @@ import { ChevronsLeft, ChevronsRight, Plus, Search } from '@lucide/vue'
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
+import logoLockupDark from '@/assets/logo-lockup-for-dark-theme.png'
+import logoLockupLight from '@/assets/logo-lockup-for-light-theme.png'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useCommandPalette } from '@/composables/useCommandPalette'
@@ -28,7 +30,30 @@ const items = computed(() => routes.filter((r) => r.meta?.showInSidebar))
     :class="collapsed ? 'w-16' : 'w-60'"
   >
     <div class="flex h-14 shrink-0 items-center px-4">
-      <span v-if="!collapsed" class="text-section font-semibold">Sora</span>
+      <!-- Two color variants, swapped by the same `.dark` class useTheme()
+           already toggles on <html> — CSS-only, no extra reactive state
+           needed. The lockup's wordmark/second-shape pixels were recolored
+           per theme at asset-prep time (see src/assets/); the indigo shape
+           itself was left untouched in both since it already reads fine
+           against both surfaces (see CLAUDE.md's contrast note). -->
+      <img
+        v-if="!collapsed"
+        :src="logoLockupLight"
+        alt="Sora"
+        class="h-6 w-auto dark:hidden"
+      />
+      <img
+        v-if="!collapsed"
+        :src="logoLockupDark"
+        alt="Sora"
+        class="hidden h-6 w-auto dark:block"
+      />
+      <img
+        v-else
+        src="/icons/icon-192.png"
+        alt="Sora"
+        class="h-7 w-7 rounded-md"
+      />
     </div>
 
     <div class="flex flex-col gap-2 px-2 pb-2">

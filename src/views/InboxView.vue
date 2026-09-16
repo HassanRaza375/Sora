@@ -11,7 +11,7 @@ const { inboxTasks } = useTasks()
   <div class="mx-auto flex max-w-2xl flex-col gap-6 p-6 md:p-8">
     <header>
       <h1 class="text-page-title">Inbox</h1>
-      <p class="text-secondary text-muted-foreground">
+      <p class="text-meta text-muted-foreground">
         Capture ideas here — they stay until you give them a project or a due date.
       </p>
     </header>
