@@ -364,9 +364,20 @@ function handleOpenChange(open: boolean) {
 <template>
   <Sheet :open="isOpen" @update:open="handleOpenChange">
     <SheetContent side="right" class="flex w-full flex-col gap-6 overflow-y-auto sm:max-w-md">
-      <SheetHeader>
-        <SheetTitle>{{ title || 'New task' }}</SheetTitle>
-        <SheetDescription>Changes save automatically.</SheetDescription>
+      <SheetHeader class="flex-row items-start justify-between gap-4 space-y-0 pr-8">
+        <div class="flex flex-col gap-1.5">
+          <SheetTitle>{{ title || 'New task' }}</SheetTitle>
+          <SheetDescription>Saved automatically as you type — Done just closes this panel.</SheetDescription>
+        </div>
+        <!-- The only other way to close this drawer is the small X in the
+             corner, which reads as "cancel" even though nothing here is
+             ever cancelled (fields autosave on every change, no separate
+             submit step exists to skip). A real, labeled button removes
+             that ambiguity for anyone opening the drawer for the first
+             time, without changing the underlying autosave behavior at
+             all — this is the exact same close path as the X/Escape/
+             overlay-click, just given a clearer, more prominent name. -->
+        <Button size="sm" class="shrink-0" @click="closeTaskDrawer">Done</Button>
       </SheetHeader>
 
       <section class="flex flex-col gap-4">
